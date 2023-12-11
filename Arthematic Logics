@@ -1,0 +1,44 @@
+package com.example.program;
+
+@FunctionalInterface 
+interface IExercise{
+	  public int arthematicOperation(int a, int b); 
+}
+  
+public class Exercise {
+	  public static void main(String[] args) {
+		  IExercise addition = (x,y) -> x + y; IExercise subtraction = (x,y) -> x - y;
+		  IExercise multiplication = (x,y) -> x * y; 
+		  IExercise division = (x,y) -> {
+			  if(x != 0 && y != 0) { 
+				  return x / y; 
+			  } else {
+				  return 0; 
+			  } 
+		  }; 
+		  IExercise remainder = (x,y) -> {
+			  return x % y; 
+		  };
+
+		  IExercise perimeterOfTheRectangle = (x,y) -> {
+			  return 2 * (addition.arthematicOperation(x, y)); 
+		  };
+
+		  System.out.println("The addition of two numbers " +
+				  performArthematicOperation(10,15,addition));
+		  System.out.println("The subtraction of two numbers " +
+				  performArthematicOperation(10,15,subtraction));
+		  System.out.println("The multiplication of two numbers " +
+				  performArthematicOperation(10,15,multiplication));
+		  System.out.println("The division of two numbers " +
+				  performArthematicOperation(10,10,division));
+		  System.out.println("The remainder of two numbers " +
+				  performArthematicOperation(10,12,remainder));
+		  System.out.println("The area of the rectangle " +
+				  performArthematicOperation(5,7,multiplication) + " perimeter of the rectanngle is " + performArthematicOperation(10,12,perimeterOfTheRectangle));
+		  
+	  } 
+	  private static int performArthematicOperation(int a, int b, IExercise performOperation){ 
+		  return performOperation.arthematicOperation(a, b); 
+	  } 
+  }
